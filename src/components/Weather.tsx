@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
 import Button from "./button";
 import { Card, CardContent } from "./Card";
-import {
-	MapPin,
-	RefreshCw,
-	Droplets,
-	Wind,
-	Eye,
-	Gauge,
-} from "lucide-react";
+import { MapPin, RefreshCw, Droplets, Wind, Eye, Gauge } from "lucide-react";
 
 interface HourlyWeather {
 	time: string;
@@ -244,6 +237,10 @@ export default function WeatherWidget() {
 			handleGetWeather();
 		}
 	};
+
+	setInterval(() => {
+		handleRefresh();
+	}, 1000 * 60 * 10);
 
 	useEffect(() => {
 		handleGetWeather();
