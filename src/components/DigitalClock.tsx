@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 
 export default function DigitalClock() {
@@ -33,9 +31,7 @@ export default function DigitalClock() {
 	return (
 		<div className="grid place-items-center bg-white rounded-2xl shadow-2xl p-4">
 			<div className="flex items-end justify-center space-x-2 mb-4">
-				<div
-					className="bg-gray-400 dark:bg-gray-800 rounded-2xl px-4 py-2 shadow-2xl border border-gray-800"
-				>
+				<div className="bg-gray-400 dark:bg-gray-800 rounded-2xl px-4 py-2 shadow-2xl border border-gray-800">
 					<span className="text-4xl md:text-6xl font-light text-white tracking-wider font-mono">
 						{hours}
 					</span>
@@ -43,9 +39,7 @@ export default function DigitalClock() {
 				<div className="text-6xl md:text-8xl text-gray-400 font-light">
 					:
 				</div>
-				<div
-					className="bg-gray-400 dark:bg-gray-800 rounded-2xl px-4 py-2 shadow-2xl border border-gray-800"
-				>
+				<div className="bg-gray-400 dark:bg-gray-800 rounded-2xl px-4 py-2 shadow-2xl border border-gray-800">
 					<span className="text-4xl md:text-6xl font-light text-white tracking-wider font-mono">
 						{minutes}
 					</span>
