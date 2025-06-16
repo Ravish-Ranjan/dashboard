@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+*,
+*::before,
+*::after {
+	/* outline: 1px solid red; */
+}
+
+html,
+body,#root {
+	height: 100dvh;
+	width: 100dvw;
+	display: grid;
+	place-items: center;
+}
