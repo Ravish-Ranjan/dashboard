@@ -3,10 +3,13 @@ import AnalogClock from "./components/AnalogClock";
 import CalendarIframe from "./components/Calender";
 import DigitalClock from "./components/DigitalClock";
 import WeatherWidget from "./components/Weather";
+import { Maximize, Minimize } from "lucide-react";
+import Button from "./components/button";
 
 function App() {
 	const [googleCalenderUrl, setUrl] = useState("");
 	const [input, setInput] = useState("");
+	const [isFullScreen, setFullScreen] = useState<boolean>(false);
 
 	useEffect(() => {
 		const url = localStorage.getItem("googleCalenderUrl");
@@ -21,6 +24,71 @@ function App() {
 		localStorage.setItem("googleCalenderUrl", input);
 		setUrl(input);
 	};
+
+	function goFullscreen() {
+		const elem = document.documentElement;
+		if (!isFullScreen) {
+			if (elem.requestFullscreen) {
+				elem.requestFullscreen();
+			} else if (
+				(
+					elem as HTMLElement & {
+						webkitRequestFullscreen?: () => Promise<void>;
+						msRequestFullscreen?: () => Promise<void>;
+					}
+				).webkitRequestFullscreen
+			) {
+				(
+					elem as HTMLElement & {
+						webkitRequestFullscreen: () => Promise<void>;
+					}
+				).webkitRequestFullscreen(); // Safari
+			} else if (
+				(
+					elem as HTMLElement & {
+						msRequestFullscreen?: () => Promise<void>;
+					}
+				).msRequestFullscreen
+			) {
+				(
+					elem as HTMLElement & {
+						msRequestFullscreen: () => Promise<void>;
+					}
+				).msRequestFullscreen(); // IE11
+			}
+			setFullScreen(true);
+		} else {
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (
+				(
+					document as Document & {
+						webkitExitFullscreen?: () => Promise<void>;
+						msExitFullscreen?: () => Promise<void>;
+					}
+				).webkitExitFullscreen
+			) {
+				(
+					document as Document & {
+						webkitExitFullscreen: () => Promise<void>;
+					}
+				).webkitExitFullscreen(); // Safari
+			} else if (
+				(
+					document as Document & {
+						msExitFullscreen?: () => Promise<void>;
+					}
+				).msExitFullscreen
+			) {
+				(
+					document as Document & {
+						msExitFullscreen: () => Promise<void>;
+					}
+				).msExitFullscreen(); // IE11
+			}
+			setFullScreen(false);
+		}
+	}
 
 	return (
 		<div className="h-full w-full flex justify-around p-8 bg-blue-100 gap-4">
@@ -94,6 +162,20 @@ function App() {
 					</span>
 				</div>
 			)}
+			<Button
+				className="absolute top-5 left-5 bg-white dark:bg-gray-700"
+				onClick={() => {
+					goFullscreen();
+					setFullScreen(!isFullScreen);
+				}}
+				variant={"default"}
+			>
+				{isFullScreen ? (
+					<Minimize className="text-gray-800 dark:text-white" strokeWidth={2.5} />
+				) : (
+					<Maximize className="text-gray-800 dark:text-white" strokeWidth={2.5} />
+				)}
+			</Button>
 		</div>
 	);
 }

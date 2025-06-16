@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import Button from "./button";
 import { Card, CardContent } from "./Card";
-import { MapPin, RefreshCw, Droplets, Wind, Eye, Gauge } from "lucide-react";
+import {
+	MapPin,
+	RefreshCw,
+	Droplets,
+	Wind,
+	Eye,
+	Gauge,
+} from "lucide-react";
 
 interface HourlyWeather {
 	time: string;
@@ -297,7 +304,7 @@ export default function WeatherWidget() {
 						</div>
 					) : weather ? (
 						<>
-							<div className="mb-6 flex justify-center items-center">
+							<div className="mb-6 ">
 								<div className="text-6xl font-light text-sky-900 mb-2">
 									{weather.temperature}
 								</div>
